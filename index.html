@@ -1,0 +1,347 @@
+<!DOCTYPE html>
+<html lang="en" >
+<head>
+<meta charset="UTF-8" />
+<title>Bananas vs Chewy: Epic Showdown - Director's Cut 🍌🐶</title>
+<style>
+  html, body {
+    margin: 0; padding: 0;
+    height: 100%; width: 100%;
+    background: linear-gradient(135deg, #222 0%, #000 100%);
+    font-family: 'Comic Sans MS', cursive, sans-serif;
+    color: #d3ff7a;
+    overflow: hidden;
+    user-select: none;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+  #intro {
+    position: absolute;
+    top:0; left:0; width:100%; height:100%;
+    background: radial-gradient(circle at center, #000 0%, #111 80%);
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    z-index: 100;
+    color: #7fff00;
+    text-shadow: 0 0 15px #7fff00;
+    font-weight: bold;
+    letter-spacing: 4px;
+  }
+  #intro h1 {
+    font-size: 3.5rem;
+    margin-bottom: 10px;
+  }
+  #countdown {
+    font-size: 7rem;
+    font-weight: 900;
+    margin-top: 5px;
+    animation: pulse 1s infinite alternate ease-in-out;
+  }
+  @keyframes pulse {
+    0% { transform: scale(1); color: #7fff00; }
+    100% { transform: scale(1.2); color: #d3ff7a; }
+  }
+  #movie {
+    position: relative;
+    width: 100vw;
+    height: 100vh;
+    overflow: hidden;
+    display: none;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    background: black;
+  }
+  .scene {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    background: #000;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    opacity: 0;
+    pointer-events: none;
+    transition: opacity 1.5s ease;
+  }
+  .scene.active {
+    opacity: 1;
+    pointer-events: all;
+  }
+  .character {
+    width: 140px;
+    margin: 10px;
+    user-select: none;
+    filter: drop-shadow(0 0 8px #7fff00);
+    animation: bob 3s ease-in-out infinite;
+  }
+  .character.chewy {
+    filter: drop-shadow(0 0 12px #ff4444);
+    animation: chewybob 2.5s ease-in-out infinite;
+  }
+  @keyframes bob {
+    0%, 100% { transform: translateY(0); }
+    50% { transform: translateY(-15px); }
+  }
+  @keyframes chewybob {
+    0%, 100% { transform: translateY(0) rotate(0deg); }
+    50% { transform: translateY(-10px) rotate(10deg); }
+  }
+  .dialogue {
+    background: rgba(0, 255, 0, 0.2);
+    border-radius: 20px;
+    padding: 20px 30px;
+    font-size: 1.8rem;
+    max-width: 80%;
+    color: #aaff77;
+    text-shadow: 0 0 6px black;
+    margin-top: 25px;
+    font-weight: bold;
+    user-select: none;
+  }
+  #characters-row {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-top: 20px;
+  }
+  /* Confetti */
+  .confetti {
+    position: fixed;
+    width: 12px;
+    height: 12px;
+    background-color: #7fff00;
+    opacity: 0.9;
+    pointer-events: none;
+    animation: fall 4s linear forwards;
+    border-radius: 3px;
+    filter: drop-shadow(0 0 6px #aaff77);
+  }
+  @keyframes fall {
+    0% {
+      transform: translateY(-50px) rotate(0deg);
+      opacity: 1;
+    }
+    100% {
+      transform: translateY(110vh) rotate(360deg);
+      opacity: 0;
+    }
+  }
+
+  /* Grand finale styles */
+  #scene8, #scene9, #scene10 {
+    background: radial-gradient(circle at center, #7fff00 20%, #004400 90%);
+    color: #d0ff9f;
+    text-shadow: 0 0 20px #b0ff70;
+  }
+  #scene8 .dialogue, #scene9 .dialogue, #scene10 .dialogue {
+    font-size: 2.2rem;
+    font-weight: 900;
+    background: rgba(10, 100, 0, 0.7);
+    border: 3px solid #aaff77;
+    box-shadow: 0 0 25px #b0ff70;
+  }
+  /* Glowing "The End" text */
+  #theEnd {
+    font-size: 5rem;
+    font-weight: 900;
+    color: #aaff77;
+    text-shadow:
+      0 0 8px #b0ff70,
+      0 0 20px #7fff00,
+      0 0 40px #7fff00,
+      0 0 80px #aaff77;
+    margin-top: 50px;
+    user-select: none;
+  }
+  /* Post credit tease */
+  #postCredit {
+    font-size: 1.6rem;
+    font-style: italic;
+    margin-top: 40px;
+    color: #9eff8e;
+    text-shadow: 0 0 8px #6eff40;
+  }
+</style>
+</head>
+<body>
+
+<!-- INTRO COUNTDOWN -->
+<div id="intro">
+  <h1>🍌 BANANAS VS CHEWY 🍌</h1>
+  <div>Get ready for the epic showdown!</div>
+  <div id="countdown">7</div>
+</div>
+
+<!-- MOVIE -->
+<div id="movie">
+  <div class="scene active" id="scene1">
+    <div id="characters-row">
+      <img class="character" src="https://upload.wikimedia.org/wikipedia/commons/8/8a/Banana-Single.jpg" alt="Banana Bob" title="Banana Bob" />
+    </div>
+    <div class="dialogue">🍌 Banana Bob: "Chewy the Cavapoo is causing chaos! Time to assemble the team!"</div>
+  </div>
+  <div class="scene" id="scene2">
+    <div id="characters-row">
+      <img class="character" src="https://upload.wikimedia.org/wikipedia/commons/8/8a/Banana-Single.jpg" alt="Banana Sue" title="Banana Sue" />
+      <img class="character" src="https://cdn-icons-png.flaticon.com/512/2922/2922562.png" alt="Cool Human" title="Cool Human" />
+      <img class="character" src="https://cdn-icons-png.flaticon.com/512/616/616408.png" alt="Mystery Figure" title="Mystery Figure" />
+    </div>
+    <div class="dialogue">🍌 Banana Sue: "I brought our trusty human friend and a secret ally. Together, we’ll stop Chewy!"</div>
+  </div>
+  <div class="scene" id="scene3">
+    <div id="characters-row">
+      <img class="character chewy" src="https://cdn-icons-png.flaticon.com/512/616/616408.png" alt="Chewy the Cavapoo" title="Chewy the Cavapoo" />
+    </div>
+    <div class="dialogue">🐶 Chewy: "You think you can stop me? I’m the fluffiest terror in town!"</div>
+  </div>
+  <div class="scene" id="scene4">
+    <div id="characters-row">
+      <img class="character" src="https://upload.wikimedia.org/wikipedia/commons/8/8a/Banana-Single.jpg" alt="Banana Bob" title="Banana Bob" />
+      <img class="character" src="https://upload.wikimedia.org/wikipedia/commons/8/8a/Banana-Single.jpg" alt="Banana Sue" title="Banana Sue" />
+      <img class="character chewy" src="https://cdn-icons-png.flaticon.com/512/616/616408.png" alt="Chewy the Cavapoo" title="Chewy the Cavapoo" />
+    </div>
+    <div class="dialogue">🍌 Bananas & Human: "For peace and fruitiness! Take this, Chewy!"</div>
+  </div>
+  <div class="scene" id="scene5">
+    <div id="characters-row">
+      <img class="character" src="https://upload.wikimedia.org/wikipedia/commons/8/8a/Banana-Single.jpg" alt="Banana Bob" title="Banana Bob" />
+      <img class="character" src="https://upload.wikimedia.org/wikipedia/commons/8/8a/Banana-Single.jpg" alt="Banana Sue" title="Banana Sue" />
+      <img class="character" src="https://cdn-icons-png.flaticon.com/512/2922/2922562.png" alt="Cool Human" title="Cool Human" />
+    </div>
+    <div class="dialogue">🍌 Banana Bob: "Chewy’s defeated! The fruit kingdom is safe again!"</div>
+  </div>
+  <div class="scene" id="scene6">
+    <div id="characters-row">
+      <img class="character" src="https://cdn-icons-png.flaticon.com/512/2331/2331520.png" alt="Banana DJ" title="Banana DJ" />
+    </div>
+    <div class="dialogue">🍌 Banana DJ: "Let’s celebrate with a fruit-tastic dance party! 🎉🍌"</div>
+  </div>
+  <div class="scene" id="scene7">
+    <div id="characters-row">
+      <img class="character" src="https://cdn-icons-png.flaticon.com/512/2331/2331520.png" alt="Banana DJ" title="Banana DJ" />
+      <img class="character chewy" src="https://cdn-icons-png.flaticon.com/512/616/616408.png" alt="Chewy the Cavapoo" title="Chewy the Cavapoo" />
+    </div>
+    <div class="dialogue">🐶 Chewy: "Alright, I surrender... But can I join the party? 🥳"</div>
+  </div>
+
+  <!-- NEW ending scenes! -->
+  <div class="scene" id="scene8">
+    <div id="characters-row">
+      <img class="character" src="https://upload.wikimedia.org/wikipedia/commons/8/8a/Banana-Single.jpg" alt="Banana Bob" title="Banana Bob" />
+      <img class="character" src="https://upload.wikimedia.org/wikipedia/commons/8/8a/Banana-Single.jpg" alt="Banana Sue" title="Banana Sue" />
+      <img class="character" src="https://cdn-icons-png.flaticon.com/512/2922/2922562.png" alt="Cool Human" title="Cool Human" />
+      <img class="character" src="https://cdn-icons-png.flaticon.com/512/2331/2331520.png" alt="Banana DJ" title="Banana DJ" />
+      <img class="character chewy" src="https://cdn-icons-png.flaticon.com/512/616/616408.png" alt="Chewy the Cavapoo" title="Chewy the Cavapoo" />
+    </div>
+    <div class="dialogue">
+      🍌 All Together: "Fruit kingdom forever! 🍍🍌🍉 Let's party like it's the last peel!"
+    </div>
+  </div>
+  <div class="scene" id="scene9">
+    <div id="theEnd">THE END</div>
+    <div class="dialogue">
+      Thanks for watching! Stay fruity and keep your bananas bright! 🍌✨
+    </div>
+  </div>
+  <div class="scene" id="scene10">
+    <div class="dialogue" style="font-size:1.8rem;">
+      Psst... Heard a rumor that Chewy’s got a secret... a BIGGER puppy friend! Stay tuned for the sequel! 🐕‍🦺😱
+    </div>
+  </div>
+</div>
+
+<script>
+  const intro = document.getElementById('intro');
+  const countdownEl = document.getElementById('countdown');
+  const movie = document.getElementById('movie');
+  const scenes = document.querySelectorAll('.scene');
+
+  // Scene dialogues for narration
+  const sceneTexts = Array.from(scenes).map(scene => scene.querySelector('.dialogue').textContent.trim());
+
+  let countdown = 7;
+  let currentScene = 0;
+
+  // Speech synthesis (AI voice)
+  const synth = window.speechSynthesis;
+
+  function speak(text) {
+    if(!synth) return;
+    if(synth.speaking) synth.cancel();
+    const utterance = new SpeechSynthesisUtterance(text);
+    utterance.lang = 'en-US';
+    utterance.rate = 1;
+    utterance.pitch = 1.2;
+    synth.speak(utterance);
+  }
+
+  // Countdown intro animation
+  const countdownInterval = setInterval(() => {
+    countdown--;
+    countdownEl.textContent = countdown > 0 ? countdown : "GO!";
+    if (countdown <= 0) {
+      clearInterval(countdownInterval);
+      setTimeout(() => {
+        intro.style.transition = 'opacity 1s ease';
+        intro.style.opacity = 0;
+        setTimeout(() => {
+          intro.style.display = 'none';
+          movie.style.display = 'flex';
+          showScene(currentScene);
+          startAutoAdvance();
+        }, 1000);
+      }, 1000);
+    }
+  }, 1000);
+
+  // Confetti
+  function createConfetti() {
+    const confetti = document.createElement('div');
+    confetti.classList.add('confetti');
+    confetti.style.left = Math.random() * window.innerWidth + 'px';
+    confetti.style.backgroundColor = `hsl(${Math.random()*120 + 80}, 90%, 65%)`;
+    confetti.style.animationDuration = (3 + Math.random() * 2) + 's';
+    document.body.appendChild(confetti);
+    setTimeout(() => confetti.remove(), 4000);
+  }
+
+  // Confetti rain on scenes 8 & 9
+  let confettiInterval;
+
+  function checkConfetti(sceneIndex) {
+    clearInterval(confettiInterval);
+    if (sceneIndex === 7 || sceneIndex === 8) { // scene8 or scene9 (0-based)
+      confettiInterval = setInterval(createConfetti, 150);
+    }
+  }
+
+  // Show scene with confetti logic
+  function showScene(index) {
+    scenes.forEach((scene, i) => {
+      scene.classList.toggle('active', i === index);
+    });
+    checkConfetti(index);
+    speak(sceneTexts[index]);
+  }
+
+  // Auto advance scenes every 8.5 seconds
+  function autoAdvance() {
+    currentScene++;
+    if (currentScene >= scenes.length) currentScene = 0;
+    showScene(currentScene);
+  }
+
+  let autoAdvanceInterval;
+
+  function startAutoAdvance() {
+    autoAdvanceInterval = setInterval(autoAdvance, 8500);
+  }
+</script>
+
+</body>
+</html>
